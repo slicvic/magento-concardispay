@@ -18,16 +18,16 @@
     </global>
     <default>
         <payment>
-            <wfn_concardis>
+            <wfn_concardispay>
                 <active>1</active>
                 <model>wfnconcardispay/method</model>
                 <cctypes>AE,VI,MC,DI</cctypes>
                 <order_status>pending</order_status>
-                <title>Credit / Debit / Prepaid Cards</title>
+                <title>Credit / Debit / Prepaid Cards (Concardis)</title>
                 <allowspecific>1</allowspecific>
                 <specificcountry>US</specificcountry>
                 <cctypes>AE,VI,MC,DI</cctypes>
-            </wfn_concardis>
+            </wfn_concardispay>
         </payment>
     </default>
 </config>

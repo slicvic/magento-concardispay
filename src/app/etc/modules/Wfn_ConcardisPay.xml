@@ -4,6 +4,9 @@
         <Wfn_ConcardisPay>
             <active>true</active>
             <codePool>local</codePool>
+            <depends>
+                <Mage_Payment />
+            </depends>
         </Wfn_ConcardisPay>
     </modules>
 </config>
