@@ -1,0 +1,7 @@
+<config>
+    <modules>
+        <Wfn_ConcardisPay>
+            <version>1.0.0.0</version>
+        </Wfn_ConcardisPay>
+    </modules>
+</config>
