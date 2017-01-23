@@ -5,10 +5,29 @@
         </Wfn_ConcardisPay>
     </modules>
     <global>
+        <helpers>
+            <wfnconcardispay>
+                <class>Wfn_ConcardisPay_Helper</class>
+            </wfnconcardispay>
+        </helpers>
         <models>
             <wfnconcardispay>
                 <class>Wfn_ConcardisPay_Model</class>
             </wfnconcardispay>
         </models>
     </global>
+    <default>
+        <payment>
+            <wfn_concardis>
+                <active>1</active>
+                <model>wfnconcardispay/method</model>
+                <cctypes>AE,VI,MC,DI</cctypes>
+                <order_status>pending</order_status>
+                <title>Credit / Debit / Prepaid Cards</title>
+                <allowspecific>1</allowspecific>
+                <specificcountry>US</specificcountry>
+                <cctypes>AE,VI,MC,DI</cctypes>
+            </wfn_concardis>
+        </payment>
+    </default>
 </config>
