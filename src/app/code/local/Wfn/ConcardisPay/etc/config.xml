@@ -4,4 +4,11 @@
             <version>1.0.0.0</version>
         </Wfn_ConcardisPay>
     </modules>
+    <global>
+        <models>
+            <wfnconcardispay>
+                <class>Wfn_ConcardisPay_Model</class>
+            </wfnconcardispay>
+        </models>
+    </global>
 </config>
