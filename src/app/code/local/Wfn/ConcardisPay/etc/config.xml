@@ -20,9 +20,10 @@
         <payment>
             <wfn_concardispay>
                 <active>1</active>
-                <model>wfnconcardispay/method</model>
+                <model>wfnconcardispay/payment</model>
+                <payment_action>authorize</payment_action>
                 <cctypes>AE,VI,MC,DI</cctypes>
-                <order_status>pending</order_status>
+                <order_status>processing</order_status>
                 <title>Credit / Debit / Prepaid Cards (Concardis)</title>
                 <allowspecific>1</allowspecific>
                 <specificcountry>US</specificcountry>
