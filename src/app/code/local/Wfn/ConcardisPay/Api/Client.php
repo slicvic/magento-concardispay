@@ -1,44 +1,38 @@
 <?php
 /**
- * API client.
+ * Class Wfn_ConcardisPay_Api_Client
  */
-class Wfn_ConcardisPay_Api_Client implements Wfn_ConcardisPay_Api_ClientInterface
+class Wfn_ConcardisPay_Api_Client implements Wfn_ConcardisPay_Api_Client_Interface
 {
-    const DEBUG_MODE = true;
-
     /**
      * {@inheritdoc}
      */
-    public static function order(Mage_Sales_Model_Order_Payment $payment, $amount, Wfn_ConcardisPay_Model_Method_Cc $method)
+    public function order(Mage_Sales_Model_Order_Payment $payment, $amount, Wfn_ConcardisPay_Model_Method_Cc $method)
     {
-        $request = (new Wfn_ConcardisPay_Api_Order_Request($method->getConfigData('order_api_url')))
-            ->setOperation(Wfn_ConcardisPay_Api_Order_Request::OPERATION_AUTHORIZE)
-            ->setPspId($method->getConfigData('pspid'))
-            ->setUserId($method->getConfigData('userid'))
-            ->setPswd($method->getConfigData('pswd'))
-            ->setOrderId($payment->getOrder()->getIncrementId())
-            ->setAmount($amount)
-            ->setCardno($payment->getCcNumber())
-            ->setEd(sprintf('%02d%02d', $payment->getCcExpMonth(), substr($payment->getCcExpYear(), -2)))
-            ->setCvc($payment->getCcCid());
+        $request = (new Wfn_ConcardisPay_Api_Request($method->getConfigData('order_api_url')))
+            ->setParameter('CURRENCY', Wfn_ConcardisPay_Api_Request::CURRENCY_USD)
+            ->setParameter('ECI', Wfn_ConcardisPay_Api_Request::ECI_ECOMMERCE)
+            ->setParameter('PSPID', $method->getConfigData('pspid'))
+            ->setParameter('USERID', $method->getConfigData('userid'))
+            ->setParameter('PSWD', $method->getConfigData('pswd'))
+            ->setParameter('ORDERID', $payment->getOrder()->getIncrementId())
+            ->setParameter('AMOUNT', $amount * 100)
+            ->setParameter('CARDNO', $payment->getCcNumber())
+            ->setParameter('ED', sprintf('%02d%02d', $payment->getCcExpMonth(), substr($payment->getCcExpYear(), -2)))
+            ->setParameter('CVC', $payment->getCcCid());
 
-        if ($method->getConfigData('payment_action') != Wfn_ConcardisPay_Model_Method_Cc::ACTION_AUTHORIZE) {
-            $request->setOperation(Wfn_ConcardisPay_Api_Order_Request::OPERATION_SALE);
+        if ($method->getConfigData('payment_action') == Wfn_ConcardisPay_Model_Method_Cc::ACTION_AUTHORIZE) {
+            $request->setParameter('OPERATION', Wfn_ConcardisPay_Api_Request::OPERATION_AUTHORIZE);
+        } else {
+            $request->setParameter('OPERATION', Wfn_ConcardisPay_Api_Request::OPERATION_SALE);
         }
 
-        $response = $request
-            ->sign($method->getConfigData('passphrase'))
-            ->send();
+        $response = $request->send($method->getConfigData('passphrase'));
 
-        if (self::DEBUG_MODE) {
-            $fh = fopen(Mage::getBaseDir() . '/concardis_order_request.log', 'w+');
-            fwrite($fh, var_export($request, true));
-            fwrite($fh, "\n\n");
-            fwrite($fh, var_export($response, true));
-            fclose($fh);
-        }
+        $this->log(var_export($request, true));
+        $this->log(var_export($response, true));
 
-        if (!$response->isOk()) {
+        if ($response->getHttpCode() != Wfn_ConcardisPay_Api_Response::HTTP_CODE_OK) {
             Mage::throwException(
                 Mage::helper('wfnconcardispay')->__(
                     sprintf('There was an error processing your payment (Error: HTTP Status %s). Please contact us or try again.',
@@ -48,7 +42,12 @@ class Wfn_ConcardisPay_Api_Client implements Wfn_ConcardisPay_Api_ClientInterfac
             );
         }
 
-        if (!$response->isApproved()) {
+        $isApproved = (
+                $response->getStatus() == Wfn_ConcardisPay_Api_Response::STATUS_AUTHORIZED
+                || $response->getStatus() == Wfn_ConcardisPay_Api_Response::STATUS_PAYMENT_ACCEPTED
+            );
+
+        if (!$isApproved) {
             Mage::throwException(
                 Mage::helper('wfnconcardispay')->__(
                     sprintf('There was an error processing your payment. %s (Status: %s, Error: %s)',
@@ -61,5 +60,15 @@ class Wfn_ConcardisPay_Api_Client implements Wfn_ConcardisPay_Api_ClientInterfac
         }
 
         return $response;
+    }
+
+    /**
+     * Log request data and response.
+     *
+     * @param string $message
+     */
+    private function log($message)
+    {
+        Mage::log($message . "\n\n", null, 'concardispay.log');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Payment method model.
+ * Class Wfn_ConcardisPay_Model_Method_Cc
  */
 class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
 {
@@ -24,8 +24,8 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
      */
     public function authorize(Varien_Object $payment, $amount)
     {
-        parent::authorize($payment, $amount);
-        Wfn_ConcardisPay_Api_Client::order($payment, $amount, $this);
+        $client = new Wfn_ConcardisPay_Api_Client();
+        $client->order($payment, $amount, $this);
         return $this;
     }
 
@@ -34,8 +34,8 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
      */
     public function capture(Varien_Object $payment, $amount)
     {
-        parent::capture($payment, $amount);
-        Wfn_ConcardisPay_Api_Client::order($payment, $amount, $this);
+        $client = new Wfn_ConcardisPay_Api_Client();
+        $client->order($payment, $amount, $this);
         return $this;
     }
 }
