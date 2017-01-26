@@ -18,17 +18,22 @@
     </global>
     <default>
         <payment>
-            <wfn_concardispay>
+            <wfn_concardis_cc>
                 <active>1</active>
-                <model>wfnconcardispay/payment</model>
+                <model>wfnconcardispay/method_cc</model>
                 <payment_action>authorize</payment_action>
                 <cctypes>AE,VI,MC,DI</cctypes>
                 <order_status>processing</order_status>
-                <title>Credit / Debit / Prepaid Cards (Concardis)</title>
+                <title>Credit / Debit / Prepaid Cards (ConCardis)</title>
                 <allowspecific>1</allowspecific>
                 <specificcountry>US</specificcountry>
                 <cctypes>AE,VI,MC,DI</cctypes>
-            </wfn_concardispay>
+                <pspid>Arrowtex</pspid>
+                <userid>test-api-user</userid>
+                <pswd><![CDATA[5hnqmb6vgs7pn]]></pswd>
+                <passphrase><![CDATA[2##35YU!h87-&&2EA00k37,727L5]]></passphrase>
+                <order_api_url>https://secure.payengine.de/ncol/test/orderdirect.asp</order_api_url>
+            </wfn_concardis_cc>
         </payment>
     </default>
 </config>

@@ -3,7 +3,7 @@
     <sections>
         <payment>
             <groups>
-                <wfn_concardispay translate="label" module="wfnconcardispay">
+                <wfn_concardis_cc translate="label" module="wfnconcardispay">
                     <label>WFN Concardis</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>1000</sort_order>
@@ -32,7 +32,7 @@
                             <label>Payment Action</label>
                             <frontend_type>select</frontend_type>
                             <source_model>paygate/authorizenet_source_paymentAction</source_model>
-                            <sort_order>7</sort_order>
+                            <sort_order>3</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
@@ -41,15 +41,55 @@
                             <label>New Order Status</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_order_status</source_model>
-                            <sort_order>7</sort_order>
+                            <sort_order>4</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                         </order_status>
+                        <pspid translate="label">
+                            <label>PSPID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </pspid>
+                        <userid translate="label">
+                            <label>USERID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </userid>
+                        <pswd translate="label">
+                            <label>PSWD</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </pswd>
+                        <passphrase translate="label">
+                            <label>PASSPHRASE</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </passphrase>
+                        <order_api_url translate="label">
+                            <label>ORDER API URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_api_url>
                         <allowspecific translate="label">
                             <label>Payment from Applicable Countries</label>
                             <frontend_type>allowspecific</frontend_type>
-                            <sort_order>8</sort_order>
+                            <sort_order>9</sort_order>
                             <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -69,7 +109,7 @@
                             <label>Credit Card Types</label>
                             <frontend_type>multiselect</frontend_type>
                             <source_model>adminhtml/system_config_source_payment_cctype</source_model>
-                            <sort_order>4</sort_order>
+                            <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
@@ -78,13 +118,13 @@
                         <sort_order translate="label">
                             <label>Sort Order</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>11</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                         </sort_order>
                     </fields>
-                </wfn_concardispay>
+                </wfn_concardis_cc>
             </groups>
         </payment>
     </sections>
