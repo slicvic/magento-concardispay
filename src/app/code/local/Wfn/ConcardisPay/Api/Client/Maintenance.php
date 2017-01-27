@@ -2,7 +2,7 @@
 /**
  * Class Wfn_ConcardisPay_Api_Client_Maintenance
  *
- * Client for https://secure.payengine.de/ncol/test/maintenancedirect.asp
+ * Client for {@link https://secure.payengine.de/ncol/test/maintenancedirect.asp}
  */
 class Wfn_ConcardisPay_Api_Client_Maintenance extends Wfn_ConcardisPay_Api_Client_Abstract
 {

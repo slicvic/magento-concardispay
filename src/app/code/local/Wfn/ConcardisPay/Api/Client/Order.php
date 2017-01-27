@@ -2,7 +2,7 @@
 /**
  * Class Wfn_ConcardisPay_Api_Client_Order
  *
- * Client for  https://secure.payengine.de/ncol/test/orderdirect.asp
+ * Client for {@link https://secure.payengine.de/ncol/test/orderdirect.asp}
  */
 class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abstract
 {
