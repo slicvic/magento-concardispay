@@ -31,7 +31,7 @@ interface Wfn_ConcardisPay_Api_Request_Interface
     /**
      * Execute a cURL request.
      *
-     * @return Wfn_ConcardisPay_Api_Response
+     * @return Wfn_ConcardisPay_Api_Response_Interface
      */
     public function send();
 

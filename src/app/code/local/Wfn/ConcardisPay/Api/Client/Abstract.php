@@ -4,10 +4,29 @@
  */
 abstract class Wfn_ConcardisPay_Api_Client_Abstract
 {
+    /**
+     * @var string
+     */
     protected $url;
+
+    /**
+     * @var string
+     */
     protected $pspId;
+
+    /**
+     * @var string
+     */
     protected $user;
+
+    /**
+     * @var string
+     */
     protected $password;
+
+    /**
+     * @var string
+     */
     protected $passphrase;
 
     /**
@@ -26,6 +45,11 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
         $this->passphrase = $passphrase;
     }
 
+    /**
+     * @param Wfn_ConcardisPay_Api_Response_Interface $response
+     * @param array $successStatuses
+     * @throws Mage_Core_Exception
+     */
     protected function processResponse(Wfn_ConcardisPay_Api_Response_Interface $response, array $successStatuses)
     {
         if ($response->getHttpCode() != $response::HTTP_CODE_OK) {
@@ -44,6 +68,10 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
         }
     }
 
+    /**
+     * @param string $message
+     * @throws Mage_Core_Exception
+     */
     protected function throwException($message)
     {
         Mage::throwException(Mage::helper('wfnconcardispay')->__($message));

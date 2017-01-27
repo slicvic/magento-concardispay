@@ -6,6 +6,12 @@
  */
 class Wfn_ConcardisPay_Api_Client_Maintenance extends Wfn_ConcardisPay_Api_Client_Abstract
 {
+    /**
+     * @param float  $amount
+     * @param string $orderId
+     * @return Wfn_ConcardisPay_Api_Response_Interface
+     * @throws Mage_Core_Exception
+     */
     public function capture($amount, $orderId)
     {
         $request = (new Wfn_ConcardisPay_Api_Request($this->url))

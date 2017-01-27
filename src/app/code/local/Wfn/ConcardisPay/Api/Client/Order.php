@@ -6,6 +6,16 @@
  */
 class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abstract
 {
+    /**
+     * @param float  $amount
+     * @param string $orderId
+     * @param string $ccNumber
+     * @param string $ccExpMonth
+     * @param string $ccExpYear
+     * @param string $ccCvc
+     * @return Wfn_ConcardisPay_Api_Response_Interface
+     * @throws Mage_Core_Exception
+     */
     public function authorize($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
     {
         $request = $this->buildRequest($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
@@ -16,6 +26,16 @@ class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abst
         return $response;
     }
 
+    /**
+     * @param float  $amount
+     * @param string $orderId
+     * @param string $ccNumber
+     * @param string $ccExpMonth
+     * @param string $ccExpYear
+     * @param string $ccCvc
+     * @return Wfn_ConcardisPay_Api_Response_Interface
+     * @throws Mage_Core_Exception
+     */
     public function authorizeAndCapture($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
     {
         $request = $this->buildRequest($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
@@ -26,6 +46,15 @@ class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abst
         return $response;
     }
 
+    /**
+     * @param float  $amount
+     * @param string $orderId
+     * @param string $ccNumber
+     * @param string $ccExpMonth
+     * @param string $ccExpYear
+     * @param string $ccCvc
+     * @return Wfn_ConcardisPay_Api_Request_Interface
+     */
     private function buildRequest($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
     {
         $request = (new Wfn_ConcardisPay_Api_Request($this->url))
