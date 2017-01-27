@@ -28,11 +28,12 @@
                 <allowspecific>1</allowspecific>
                 <specificcountry>US</specificcountry>
                 <cctypes>AE,VI,MC,DI</cctypes>
-                <pspid>Arrowtex</pspid>
-                <userid>test-api-user</userid>
-                <pswd><![CDATA[5hnqmb6vgs7pn]]></pswd>
-                <passphrase><![CDATA[2##35YU!h87-&&2EA00k37,727L5]]></passphrase>
                 <order_api_url>https://secure.payengine.de/ncol/test/orderdirect.asp</order_api_url>
+                <maintenance_api_url>https://secure.payengine.de/ncol/test/maintenancedirect.asp</maintenance_api_url>
+                <api_pspid>Arrowtex</api_pspid>
+                <api_user>test-api-user</api_user>
+                <api_password><![CDATA[5hnqmb6vgs7pn]]></api_password>
+                <api_passphrase><![CDATA[2##35YU!h87-&&2EA00k37,727L5]]></api_passphrase>
             </wfn_concardis_cc>
         </payment>
     </default>

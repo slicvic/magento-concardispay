@@ -4,9 +4,10 @@
  */
 class Wfn_ConcardisPay_Api_Response implements Wfn_ConcardisPay_Api_Response_Interface
 {
-    const HTTP_CODE_OK             = 200;
-    const STATUS_AUTHORIZED        = 5;
-    const STATUS_PAYMENT_ACCEPTED  = 9;
+    const HTTP_CODE_OK               = 200;
+    const STATUS_AUTHORIZED          = 5;
+    const STATUS_PAYMENT_REQUESTED   = 9;
+    const STATUS_PAYMENT_PROCESSING  = 91;
 
     /**
      * The HTTP status code.
@@ -62,12 +63,14 @@ class Wfn_ConcardisPay_Api_Response implements Wfn_ConcardisPay_Api_Response_Int
         $this->httpCode = (int) $httpCode;
         $this->headers = $headers;
         $this->body = $body;
-        $xml = simplexml_load_string($body);
-        if ($xml !== false) {
-            $this->status = (isset($xml['STATUS'])) ? $xml['STATUS'] : null;
-            $this->ncError = (isset($xml['NCERROR'])) ? $xml['NCERROR'] : null;
-            $this->ncErrorPlus = (isset($xml['NCERRORPLUS'])) ? $xml['NCERRORPLUS'] : null;
+
+        $transactionData = simplexml_load_string($this->body);
+        if ($transactionData === false) {
+            return;
         }
+        $this->status = (isset($transactionData['STATUS'])) ? $transactionData['STATUS'] : null;
+        $this->ncError = (isset($transactionData['NCERROR'])) ? $transactionData['NCERROR'] : null;
+        $this->ncErrorPlus = (isset($transactionData['NCERRORPLUS'])) ? $transactionData['NCERRORPLUS'] : null;
     }
 
     /**

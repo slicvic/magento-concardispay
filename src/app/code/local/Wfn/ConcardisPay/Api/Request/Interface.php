@@ -37,25 +37,17 @@ interface Wfn_ConcardisPay_Api_Request_Interface
     public function setParameter($name, $value);
 
     /**
-     * Get all parameters.
-     *
-     * @return array
-     */
-    public function getParameters();
-
-    /**
-     * Set all parameters.
-     *
-     * @param array $parameters
-     * @return $this
-     */
-    public function setParameters(array $parameters);
-
-    /**
      * Execute a cURL request.
      *
-     * @param string $signingKey
      * @return Wfn_ConcardisPay_Api_Response
      */
-    public function send($signingKey);
+    public function send();
+
+    /**
+     * Sign the request.
+     *
+     * @param string $signingKey
+     * @return $this
+     */
+    public function sign($signingKey);
 }
