@@ -36,7 +36,7 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
         }
 
         if (!in_array($response->getStatus(), $successStatuses)) {
-            $this->throwException(sprintf('There was an error processing your payment. %s (Status: %s, Error: %s)',
+            $this->throwException(sprintf('There was an error processing your payment. %s (Status: %s, NCError: %s)',
                 $response->getNcErrorPlus(),
                 $response->getStatus(),
                 $response->getNcError()
