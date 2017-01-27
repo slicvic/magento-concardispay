@@ -6,55 +6,18 @@
  */
 class Wfn_ConcardisPay_Api_Client_Maintenance extends Wfn_ConcardisPay_Api_Client_Abstract
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function sendRequest()
+    public function capture($amount, $orderId)
     {
-        parent::sendRequest();
-
-        $isApproved = (
-            $this->response->getStatus() == Wfn_ConcardisPay_Api_Response::STATUS_PAYMENT_PROCESSING
-        );
-
-        if (!$isApproved) {
-            $this->throwTransactionException();
-        }
-    }
-
-    /**
-     * Set operation parameter.
-     *
-     * @param string $operation
-     * @return $this
-     */
-    public function setOperation($operation)
-    {
-        $this->request->setParameter('OPERATION', $operation);
-        return $this;
-    }
-
-    /**
-     * Set order ID parameter.
-     *
-     * @param string $orderId
-     * @return $this
-     */
-    public function setOrderId($orderId)
-    {
-        $this->request->setParameter('ORDERID', $orderId);
-        return $this;
-    }
-
-    /**
-     * Set amount parameter.
-     *
-     * @param string $amount
-     * @return $this
-     */
-    public function setAmount($amount)
-    {
-        $this->request->setParameter('AMOUNT', $amount * 100);
-        return $this;
+        $request = (new Wfn_ConcardisPay_Api_Request($this->url))
+            ->setParameter('OPERATION', Wfn_ConcardisPay_Api_Request::OPERATION_CAPTURE)
+            ->setParameter('AMOUNT', $amount * 100)
+            ->setParameter('ORDERID', $orderId)
+            ->setParameter('PSPID', $this->pspId)
+            ->setParameter('USERID', $this->user)
+            ->setParameter('PSWD', $this->password)
+            ->sign($this->passphrase);
+        $response = $request->send();
+        $this->processResponse($response, [$response::STATUS_PAYMENT_PROCESSING]);
+        return $response;
     }
 }

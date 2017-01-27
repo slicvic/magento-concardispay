@@ -6,105 +6,40 @@
  */
 class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abstract
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct($url, $pspId, $user, $password, $passphrase)
+    public function authorize($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
     {
-        parent::__construct($url, $pspId, $user, $password, $passphrase);
+        $request = $this->buildRequest($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
+            ->setParameter('OPERATION', Wfn_ConcardisPay_Api_Request::OPERATION_AUTHORIZE)
+            ->sign($this->passphrase);
+        $response = $request->send();
+        $this->processResponse($response, [$response::STATUS_AUTHORIZED, $response::STATUS_PAYMENT_REQUESTED]);
+        return $response;
+    }
 
-        $this->request
+    public function authorizeAndCapture($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
+    {
+        $request = $this->buildRequest($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
+            ->setParameter('OPERATION', Wfn_ConcardisPay_Api_Request::OPERATION_SALE)
+            ->sign($this->passphrase);
+        $response = $request->send();
+        $this->processResponse($response, [$response::STATUS_AUTHORIZED, $response::STATUS_PAYMENT_REQUESTED]);
+        return $response;
+    }
+
+    private function buildRequest($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
+    {
+        $request = (new Wfn_ConcardisPay_Api_Request($this->url))
             ->setParameter('CURRENCY', Wfn_ConcardisPay_Api_Request::CURRENCY_USD)
-            ->setParameter('ECI', Wfn_ConcardisPay_Api_Request::ECI_ECOMMERCE);
-    }
+            ->setParameter('ECI', Wfn_ConcardisPay_Api_Request::ECI_ECOMMERCE)
+            ->setParameter('AMOUNT', $amount * 100)
+            ->setParameter('ORDERID', $orderId)
+            ->setParameter('CARDNO', $ccNumber)
+            ->setParameter('ED', date('my', strtotime("$ccExpYear-$ccExpMonth-01")))
+            ->setParameter('CVC', $ccCvc)
+            ->setParameter('PSPID', $this->pspId)
+            ->setParameter('USERID', $this->user)
+            ->setParameter('PSWD', $this->password);
 
-    /**
-     * {@inheritdoc}
-     */
-    public function sendRequest()
-    {
-        parent::sendRequest();
-
-        $isApproved = (
-            $this->response->getStatus() == Wfn_ConcardisPay_Api_Response::STATUS_AUTHORIZED
-            || $this->response->getStatus() == Wfn_ConcardisPay_Api_Response::STATUS_PAYMENT_REQUESTED
-        );
-
-        if (!$isApproved) {
-            $this->throwTransactionException();
-        }
-    }
-
-    /**
-     * Set operation parameter.
-     *
-     * @param string $operation
-     * @return $this
-     */
-    public function setOperation($operation)
-    {
-        $this->request->setParameter('OPERATION', $operation);
-        return $this;
-    }
-
-    /**
-     * Set order ID parameter.
-     *
-     * @param string $orderId
-     * @return $this
-     */
-    public function setOrderId($orderId)
-    {
-        $this->request->setParameter('ORDERID', $orderId);
-        return $this;
-    }
-
-    /**
-     * Set amount parameter.
-     *
-     * @param string $amount
-     * @return $this
-     */
-    public function setAmount($amount)
-    {
-        $this->request->setParameter('AMOUNT', $amount * 100);
-        return $this;
-    }
-
-    /**
-     * Set card number parameter.
-     *
-     * @param string $cardNo
-     * @return $this
-     */
-    public function setCardNo($cardNo)
-    {
-        $this->request->setParameter('CARDNO', $cardNo);
-        return $this;
-    }
-
-    /**
-     * Set CVC parameter.
-     *
-     * @param string $cvc
-     * @return $this
-     */
-    public function setCvc($cvc)
-    {
-        $this->request->setParameter('CVC', $cvc);
-        return $this;
-    }
-
-    /**
-     * Set expiration date parameter.
-     *
-     * @param string $month
-     * @param string $year
-     * @return $this
-     */
-    public function setEd($month, $year)
-    {
-        $this->request->setParameter('ED', date('my', strtotime("$year-$month-01")));
-        return $this;
+        return $request;
     }
 }

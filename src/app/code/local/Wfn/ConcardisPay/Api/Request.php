@@ -4,6 +4,7 @@
  */
 class Wfn_ConcardisPay_Api_Request implements Wfn_ConcardisPay_Api_Request_Interface
 {
+    const DEBUG_MODE = true;
     const OPERATION_AUTHORIZE = 'RES';
     const OPERATION_CAPTURE   = 'SAS';
     const OPERATION_SALE      = 'SAL';
@@ -11,22 +12,16 @@ class Wfn_ConcardisPay_Api_Request implements Wfn_ConcardisPay_Api_Request_Inter
     const ECI_ECOMMERCE       = 7;
 
     /**
-     * The request URL.
-     *
      * @var string
      */
     protected $url;
 
     /**
-     * The request parameters.
-     *
      * @var array
      */
     protected $parameters = [];
 
     /**
-     * Constructor.
-     *
      * @param string $url
      */
     public function __construct($url)
@@ -82,29 +77,32 @@ class Wfn_ConcardisPay_Api_Request implements Wfn_ConcardisPay_Api_Request_Inter
         $headers = curl_getinfo($ch);
         curl_close($ch);
 
-        return (new Wfn_ConcardisPay_Api_Response($headers['http_code'], $headers, $body));
+        $response = new Wfn_ConcardisPay_Api_Response($headers['http_code'], $headers, $body);
+
+        if (static::DEBUG_MODE) {
+            Mage::log(
+                var_export($this, true) . "\n\n" . var_export($response, true),
+                null,
+                'concardispay.log'
+            );
+        }
+
+        return $response;
     }
 
     /**
-     * Sign the request.
-     *
-     * @param string $signingKey
-     * @return $this
+     * {@inheritdoc}
      */
     public function sign($signingKey)
     {
         $hashString = '';
         $parameters = $this->parameters;
-
         unset($parameters['SHASIGN']);
         ksort($parameters);
-
         foreach ($parameters as $name => $value) {
             $hashString .= "$name=" . $value . $signingKey;
         }
-
         $this->parameters['SHASIGN'] = hash('sha256', $hashString);
-
         return $this;
     }
 }

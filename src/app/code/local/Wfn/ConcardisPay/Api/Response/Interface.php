@@ -5,42 +5,36 @@
 interface Wfn_ConcardisPay_Api_Response_Interface
 {
     /**
-     * Get the HTTP status code.
-     *
      * @return int
      */
     public function getHttpCode();
 
     /**
-     * Get the response headers.
-     *
      * @return array
      */
     public function getHeaders();
 
     /**
-     * Get the response body.
-     *
      * @return string
      */
     public function getBody();
 
     /**
-     * Get the transaction status code.
+     * Get transaction status code.
      *
      * @return string
      */
     public function getStatus();
 
     /**
-     * Get the error code.
+     * Get transaction error code.
      *
      * @return string
      */
     public function getNcError();
 
     /**
-     * Get the error description.
+     * Get transaction error description.
      *
      * @return string
      */
