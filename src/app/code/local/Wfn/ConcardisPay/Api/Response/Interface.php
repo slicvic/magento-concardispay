@@ -17,7 +17,19 @@ interface Wfn_ConcardisPay_Api_Response_Interface
     /**
      * @return string
      */
-    public function getBody();
+    public function getRawResponse();
+
+    /**
+     * @return Wfn_ConcardisPay_Api_Request_Interface
+     */
+    public function getRequest();
+
+    /**
+     * Get payment reference ID.
+     *
+     * @return string
+     */
+    public function getPayId();
 
     /**
      * Get transaction status code.

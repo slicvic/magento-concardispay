@@ -5,6 +5,11 @@
 abstract class Wfn_ConcardisPay_Api_Client_Abstract
 {
     /**
+     * @var bool
+     */
+    public static $isLogResponse = false;
+
+    /**
      * @var string
      */
     protected $url;
@@ -52,6 +57,8 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
      */
     protected function processResponse(Wfn_ConcardisPay_Api_Response_Interface $response, array $successStatus)
     {
+        $this->logResponse($response);
+
         if ($response->getHttpCode() != $response::HTTP_CODE_OK) {
             $this->throwException(sprintf(
                 'There was an error processing your payment (Error: HTTP Status %s). Please contact us or try again.',
@@ -75,5 +82,15 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
     protected function throwException($message)
     {
         Mage::throwException(Mage::helper('wfnconcardispay')->__($message));
+    }
+
+    /**
+     * @param Wfn_ConcardisPay_Api_Response_Interface $response
+     */
+    protected function logResponse(Wfn_ConcardisPay_Api_Response_Interface $response)
+    {
+        if (static::$isLogResponse) {
+            Mage::log(var_export($response, true) . "\n\n", null, 'concardispay.log');
+        }
     }
 }

@@ -26,21 +26,26 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
      */
     public function authorize(Varien_Object $payment, $amount)
     {
-        (new Wfn_ConcardisPay_Api_Client_Order(
+        $client = new Wfn_ConcardisPay_Api_Client_Order(
             $this->getConfigData('order_api_url'),
             $this->getConfigData('api_pspid'),
             $this->getConfigData('api_userid'),
             $this->getConfigData('api_password'),
             $this->getConfigData('api_passphrase')
-            ))
-            ->authorize(
+        );
+
+        $response = $client->authorize(
             $amount,
             $payment->getOrder()->getIncrementId(),
             $payment->getCcNumber(),
             $payment->getCcExpMonth(),
             $payment->getCcExpYear(),
             $payment->getCcCid()
-            );
+        );
+
+        $payment
+            ->setTransactionId($response->getPayId())
+            ->setIsTransactionClosed(1);
 
         return $this;
     }
@@ -53,39 +58,38 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
     public function capture(Varien_Object $payment, $amount)
     {
         // Authorize and capture a new order
-        if (!$payment->getOrder()->getStatusLabel()) {
-            (new Wfn_ConcardisPay_Api_Client_Order(
-                $this->getConfigData('order_api_url'),
-                $this->getConfigData('api_pspid'),
-                $this->getConfigData('api_userid'),
-                $this->getConfigData('api_password'),
-                $this->getConfigData('api_passphrase')
-                ))
-                ->authorizeAndCapture(
-                $amount,
-                $payment->getOrder()->getIncrementId(),
-                $payment->getCcNumber(),
-                $payment->getCcExpMonth(),
-                $payment->getCcExpYear(),
-                $payment->getCcCid()
-                );
-
-            return $this;
-        }
-
-        // Capture existing order (from backend)
-        (new Wfn_ConcardisPay_Api_Client_Maintenance(
-            $this->getConfigData('maintenance_api_url'),
+        $client = new Wfn_ConcardisPay_Api_Client_Order(
+            $this->getConfigData('order_api_url'),
             $this->getConfigData('api_pspid'),
             $this->getConfigData('api_userid'),
             $this->getConfigData('api_password'),
             $this->getConfigData('api_passphrase')
-            ))
-            ->capture(
+        );
+
+        $response = $client->authorizeAndCapture(
             $amount,
-            $payment->getOrder()->getIncrementId()
-            );
+            $payment->getOrder()->getIncrementId(),
+            $payment->getCcNumber(),
+            $payment->getCcExpMonth(),
+            $payment->getCcExpYear(),
+            $payment->getCcCid()
+        );
+
+        $payment->setTransactionId($response->getPayId());
 
         return $this;
+
+//        // Capture existing order (from backend)
+//        $client = new Wfn_ConcardisPay_Api_Client_Maintenance(
+//            $this->getConfigData('maintenance_api_url'),
+//            $this->getConfigData('api_pspid'),
+//            $this->getConfigData('api_userid'),
+//            $this->getConfigData('api_password'),
+//            $this->getConfigData('api_passphrase')
+//        );
+//
+//        $response = $client->capture($amount, $payment->getOrder()->getIncrementId());
+//
+//        return $this;
     }
 }
