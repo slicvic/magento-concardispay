@@ -4,7 +4,7 @@
  */
 class Wfn_ConcardisPay_Api_Request implements Wfn_ConcardisPay_Api_Request_Interface
 {
-    const DEBUG_MODE = true;
+    const DEBUG_MODE          = true;
     const OPERATION_AUTHORIZE = 'RES';
     const OPERATION_CAPTURE   = 'SAS';
     const OPERATION_SALE      = 'SAL';
