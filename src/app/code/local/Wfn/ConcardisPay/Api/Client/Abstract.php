@@ -7,7 +7,7 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
     /**
      * @var bool
      */
-    public static $isLogResponse = false;
+    public static $isLogRequests = false;
 
     /**
      * @var string
@@ -57,7 +57,9 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
      */
     protected function processResponse(Wfn_ConcardisPay_Api_Response_Interface $response, array $successStatus)
     {
-        $this->logResponse($response);
+        if (static::$isLogRequests) {
+            $this->log($response);
+        }
 
         if ($response->getHttpCode() != $response::HTTP_CODE_OK) {
             $this->throwException(sprintf(
@@ -85,12 +87,10 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
     }
 
     /**
-     * @param Wfn_ConcardisPay_Api_Response_Interface $response
+     * @param mixed $data
      */
-    protected function logResponse(Wfn_ConcardisPay_Api_Response_Interface $response)
+    protected function log($data)
     {
-        if (static::$isLogResponse) {
-            Mage::log(var_export($response, true) . "\n\n", null, 'concardispay.log');
-        }
+        Mage::log(var_export($data, true) . "\n\n", null, 'concardispay.log');
     }
 }
