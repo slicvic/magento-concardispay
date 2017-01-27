@@ -66,7 +66,7 @@ class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abst
             ->setParameter('ED', date('my', strtotime("$ccExpYear-$ccExpMonth-01")))
             ->setParameter('CVC', $ccCvc)
             ->setParameter('PSPID', $this->pspId)
-            ->setParameter('USERID', $this->user)
+            ->setParameter('USERID', $this->userId)
             ->setParameter('PSWD', $this->password);
 
         return $request;

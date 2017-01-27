@@ -17,7 +17,7 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
     /**
      * @var string
      */
-    protected $user;
+    protected $userId;
 
     /**
      * @var string
@@ -32,25 +32,25 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
     /**
      * @param string $url
      * @param string $pspId
-     * @param string $user
+     * @param string $userId
      * @param string $password
      * @param string $passphrase
      */
-    public function __construct($url, $pspId, $user, $password, $passphrase)
+    public function __construct($url, $pspId, $userId, $password, $passphrase)
     {
         $this->url = $url;
         $this->pspId = $pspId;
-        $this->user = $user;
+        $this->userId = $userId;
         $this->password = $password;
         $this->passphrase = $passphrase;
     }
 
     /**
      * @param Wfn_ConcardisPay_Api_Response_Interface $response
-     * @param array $successStatuses
+     * @param array $successStatus
      * @throws Mage_Core_Exception
      */
-    protected function processResponse(Wfn_ConcardisPay_Api_Response_Interface $response, array $successStatuses)
+    protected function processResponse(Wfn_ConcardisPay_Api_Response_Interface $response, array $successStatus)
     {
         if ($response->getHttpCode() != $response::HTTP_CODE_OK) {
             $this->throwException(sprintf(
@@ -59,7 +59,7 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
             ));
         }
 
-        if (!in_array($response->getStatus(), $successStatuses)) {
+        if (!in_array($response->getStatus(), $successStatus)) {
             $this->throwException(sprintf('There was an error processing your payment. %s (Status: %s, NCError: %s)',
                 $response->getNcErrorPlus(),
                 $response->getStatus(),

@@ -19,7 +19,7 @@ class Wfn_ConcardisPay_Api_Client_Maintenance extends Wfn_ConcardisPay_Api_Clien
             ->setParameter('AMOUNT', $amount * 100)
             ->setParameter('ORDERID', $orderId)
             ->setParameter('PSPID', $this->pspId)
-            ->setParameter('USERID', $this->user)
+            ->setParameter('USERID', $this->userId)
             ->setParameter('PSWD', $this->password)
             ->sign($this->passphrase);
         $response = $request->send();

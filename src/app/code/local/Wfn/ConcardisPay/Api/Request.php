@@ -5,6 +5,7 @@
 class Wfn_ConcardisPay_Api_Request implements Wfn_ConcardisPay_Api_Request_Interface
 {
     const DEBUG_MODE          = true;
+
     const OPERATION_AUTHORIZE = 'RES';
     const OPERATION_CAPTURE   = 'SAS';
     const OPERATION_SALE      = 'SAL';
@@ -80,8 +81,12 @@ class Wfn_ConcardisPay_Api_Request implements Wfn_ConcardisPay_Api_Request_Inter
         $response = new Wfn_ConcardisPay_Api_Response($headers['http_code'], $headers, $body);
 
         if (static::DEBUG_MODE) {
+            $request = clone $this;
+            $request->setParameter(
+                'CARDNO', 'xxxx-' . substr($request->getParameter('CARDNO'), -4)
+            );
             Mage::log(
-                var_export($this, true) . "\n\n" . var_export($response, true),
+                var_export($request, true) . "\n\n" . var_export($response, true),
                 null,
                 'concardispay.log'
             );

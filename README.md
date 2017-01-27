@@ -1,29 +1,31 @@
-# README #
+# Magento ePin Payment 1.0
+Credit card payment method that's integrated with ConCardis PayEngine payment gateway.
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## Installation via Composer
+In order to pull in the module via composer you will need to create a `composer.json` file in your project root folder.
 
-### What is this repository for? ###
+You need to add following lines to your project's composer.json to tell Composer to check out the module as well as [magento-composer-installer](https://github.com/Cotya/magento-composer-installer) to install the module.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+Make sure to set `magento-root-dir` to the directory where your Magento resides (relative to your project's composer.json).
+```
+{
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*",
+        "wfn/magento-module-concardispay": "master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/magento-hackathon/magento-composer-installer"
+        },
+        {
+            "type": "vcs",
+            "url": "https://victorwfn@bitbucket.org/wfnnllp/concardispay.git"
+        }
+    ],
+    "extra":{
+        "magento-root-dir": ".",
+        "magento-deploystrategy": "copy"
+    }
+}
+```
