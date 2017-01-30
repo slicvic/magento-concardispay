@@ -10,7 +10,7 @@ class Wfn_ConcardisPay_Api_Client_Maintenance extends Wfn_ConcardisPay_Api_Clien
      * @param float  $amount
      * @param string $orderId
      * @return Wfn_ConcardisPay_Api_Response_Interface
-     * @throws Mage_Core_Exception
+     * @throws Wfn_ConcardisPay_Api_Exception
      */
     public function capture($amount, $orderId)
     {

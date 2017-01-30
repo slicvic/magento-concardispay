@@ -4,7 +4,7 @@
         <payment>
             <groups>
                 <wfn_concardis_cc translate="label" module="wfnconcardispay">
-                    <label>WFN Concardis</label>
+                    <label>WFN ConCardis</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>1000</sort_order>
                     <show_in_default>1</show_in_default>
@@ -48,6 +48,7 @@
                         </order_status>
                         <order_api_url translate="label">
                             <label>Order API URL</label>
+                            <comment>API for creating new orders</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>4</sort_order>
                             <show_in_default>1</show_in_default>
@@ -56,6 +57,7 @@
                         </order_api_url>
                         <maintenance_api_url translate="label">
                             <label>Maintenance API URL</label>
+                            <comment>API for updating existing orders (e.g. cancel, refund)</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>4</sort_order>
                             <show_in_default>1</show_in_default>

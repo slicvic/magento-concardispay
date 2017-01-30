@@ -14,7 +14,7 @@ class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abst
      * @param string $ccExpYear
      * @param string $ccCvc
      * @return Wfn_ConcardisPay_Api_Response_Interface
-     * @throws Mage_Core_Exception
+     * @throws Wfn_ConcardisPay_Api_Exception
      */
     public function authorize($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
     {
@@ -34,7 +34,7 @@ class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abst
      * @param string $ccExpYear
      * @param string $ccCvc
      * @return Wfn_ConcardisPay_Api_Response_Interface
-     * @throws Mage_Core_Exception
+     * @throws Wfn_ConcardisPay_Api_Exception
      */
     public function authorizeAndCapture($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
     {
