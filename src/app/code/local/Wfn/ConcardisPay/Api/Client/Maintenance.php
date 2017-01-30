@@ -7,6 +7,8 @@
 class Wfn_ConcardisPay_Api_Client_Maintenance extends Wfn_ConcardisPay_Api_Client_Abstract
 {
     /**
+     * Capture given amount.
+     *
      * @param float  $amount
      * @param string $orderId
      * @return Wfn_ConcardisPay_Api_Response_Interface

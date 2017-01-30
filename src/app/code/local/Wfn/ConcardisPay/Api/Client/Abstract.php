@@ -5,31 +5,43 @@
 abstract class Wfn_ConcardisPay_Api_Client_Abstract
 {
     /**
+     * API URL.
+     *
      * @var string
      */
     protected $url;
 
     /**
+     * Account PSP ID.
+     *
      * @var string
      */
     protected $pspId;
 
     /**
+     * Account user ID.
+     *
      * @var string
      */
     protected $userId;
 
     /**
+     * Account password.
+     *
      * @var string
      */
     protected $password;
 
     /**
+     * Account passphrase.
+     *
      * @var string
      */
     protected $passphrase;
 
     /**
+     * Constructor.
+     *
      * @param string $url
      * @param string $pspId
      * @param string $userId
@@ -46,6 +58,8 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
     }
 
     /**
+     * Process API response.
+     *
      * @param Wfn_ConcardisPay_Api_Response_Interface $response
      * @param array $successStatus
      * @throws Wfn_ConcardisPay_Api_Exception
@@ -70,6 +84,8 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
     }
 
     /**
+     * Throw an exception with given message.
+     *
      * @param string $message
      * @param Wfn_ConcardisPay_Api_Response_Interface $response
      * @throws Wfn_ConcardisPay_Api_Exception

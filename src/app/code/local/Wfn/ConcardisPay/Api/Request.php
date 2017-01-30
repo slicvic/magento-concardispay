@@ -11,16 +11,22 @@ class Wfn_ConcardisPay_Api_Request implements Wfn_ConcardisPay_Api_Request_Inter
     const ECI_ECOMMERCE       = 7;
 
     /**
+     * API URL.
+     *
      * @var string
      */
     protected $url;
 
     /**
+     * Request parameters.
+     *
      * @var array
      */
     protected $parameters = [];
 
     /**
+     * Constructor.
+     *
      * @param string $url
      */
     public function __construct($url)

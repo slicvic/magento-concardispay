@@ -10,21 +10,29 @@ class Wfn_ConcardisPay_Api_Response implements Wfn_ConcardisPay_Api_Response_Int
     const STATUS_PAYMENT_PROCESSING = 91;
 
     /**
+     * HTTP status code.
+     *
      * @var int
      */
     protected $httpCode;
 
     /**
+     * Raw response headers.
+     *
      * @var array
      */
     protected $headers;
 
     /**
+     * Raw response body.
+     *
      * @var string
      */
     protected $rawResponse;
 
     /**
+     * The original request.
+     *
      * @var Wfn_ConcardisPay_Api_Request_Interface
      */
     protected $request;
@@ -58,6 +66,8 @@ class Wfn_ConcardisPay_Api_Response implements Wfn_ConcardisPay_Api_Response_Int
     protected $ncErrorPlus;
 
     /**
+     * Constructor.
+     *
      * @param string $httpCode
      * @param array  $headers
      * @param string $rawResponse

@@ -7,6 +7,8 @@
 class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abstract
 {
     /**
+     * Authorize given amount.
+     *
      * @param float  $amount
      * @param string $orderId
      * @param string $ccNumber
@@ -27,6 +29,8 @@ class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abst
     }
 
     /**
+     * Authorize and capture given amount.
+     *
      * @param float  $amount
      * @param string $orderId
      * @param string $ccNumber
@@ -47,6 +51,8 @@ class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abst
     }
 
     /**
+     * Build request object.
+     *
      * @param float  $amount
      * @param string $orderId
      * @param string $ccNumber

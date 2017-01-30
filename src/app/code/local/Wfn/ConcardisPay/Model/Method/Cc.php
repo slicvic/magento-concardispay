@@ -57,7 +57,7 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
     }
 
     /**
-     * Authorize and capture a new order or capture existing order.
+     * Authorize and capture a new order or capture existing order from backend.
      *
      * {@inheritdoc}
      */
@@ -65,7 +65,7 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
     {
         try {
             if ($payment->getOrder()->getStatusLabel()) {
-                // Capture existing order (from backend)
+                // Capture existing order from backend
                 $client = new Wfn_ConcardisPay_Api_Client_Maintenance(
                     $this->getConfigData('maintenance_api_url'),
                     $this->getConfigData('api_pspid'),

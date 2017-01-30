@@ -5,21 +5,29 @@
 interface Wfn_ConcardisPay_Api_Response_Interface
 {
     /**
+     * Get HTTP status code.
+     *
      * @return int
      */
     public function getHttpCode();
 
     /**
+     * Get raw headers.
+     *
      * @return array
      */
     public function getHeaders();
 
     /**
+     * Get raw response body.
+     *
      * @return string
      */
     public function getRawResponse();
 
     /**
+     * Get original request.
+     *
      * @return Wfn_ConcardisPay_Api_Request_Interface
      */
     public function getRequest();
