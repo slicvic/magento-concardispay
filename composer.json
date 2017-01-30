@@ -1,0 +1,14 @@
+{
+    "name": "wfn/magento-module-concardispay",
+    "description": "A credit card payment method that's integrated with ConCardis PayEngine payment gateway",
+    "type": "magento-module",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "extra":{
+        "map":[
+            ["src/app/etc/modules/Wfn_ConcardisPay.xml", "app/etc/modules/Wfn_ConcardisPay.xml"],
+            ["src/app/code/local/Wfn/ConcardisPay/", "app/code/local/Wfn/ConcardisPay"]
+        ]
+    }
+}

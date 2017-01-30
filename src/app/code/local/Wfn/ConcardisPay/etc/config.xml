@@ -1,0 +1,40 @@
+<config>
+    <modules>
+        <Wfn_ConcardisPay>
+            <version>1.0.0.0</version>
+        </Wfn_ConcardisPay>
+    </modules>
+    <global>
+        <helpers>
+            <wfnconcardispay>
+                <class>Wfn_ConcardisPay_Helper</class>
+            </wfnconcardispay>
+        </helpers>
+        <models>
+            <wfnconcardispay>
+                <class>Wfn_ConcardisPay_Model</class>
+            </wfnconcardispay>
+        </models>
+    </global>
+    <default>
+        <payment>
+            <wfn_concardis_cc>
+                <active>1</active>
+                <model>wfnconcardispay/method_cc</model>
+                <payment_action>authorize</payment_action>
+                <cctypes>AE,VI,MC,DI</cctypes>
+                <order_status>processing</order_status>
+                <title>Credit / Debit / Prepaid Cards (ConCardis)</title>
+                <allowspecific>1</allowspecific>
+                <specificcountry>US</specificcountry>
+                <cctypes>AE,VI,MC,DI</cctypes>
+                <order_api_url>https://secure.payengine.de/ncol/test/orderdirect.asp</order_api_url>
+                <maintenance_api_url>https://secure.payengine.de/ncol/test/maintenancedirect.asp</maintenance_api_url>
+                <api_pspid>Arrowtex</api_pspid>
+                <api_userid>test-api-user</api_userid>
+                <api_password><![CDATA[5hnqmb6vgs7pn]]></api_password>
+                <api_passphrase><![CDATA[2##35YU!h87-&&2EA00k37,727L5]]></api_passphrase>
+            </wfn_concardis_cc>
+        </payment>
+    </default>
+</config>
