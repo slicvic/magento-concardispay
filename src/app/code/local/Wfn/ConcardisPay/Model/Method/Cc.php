@@ -50,6 +50,7 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
 
             return $this;
         } catch (Wfn_ConcardisPay_Api_Exception $e) {
+            $this->log($e);
             throw $e;
         } catch (Exception $e) {
             throw new Wfn_ConcardisPay_Api_Exception();
@@ -101,9 +102,26 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
 
             return $this;
         } catch (Wfn_ConcardisPay_Api_Exception $e) {
+            $this->log($e);
             throw $e;
         } catch (Exception $e) {
             throw new Wfn_ConcardisPay_Api_Exception();
         }
+    }
+
+    /**
+     * Log API exception.
+     *
+     * @param Wfn_ConcardisPay_Api_Exception $e
+     */
+    protected function log(Wfn_ConcardisPay_Api_Exception $e)
+    {
+        if ($ccNumber = $e->getResponse()->getRequest()->getParameter('CARDNO')) {
+            // Mask CC number before logging
+            $ccLast4 = 'xxxx-' . substr($ccNumber, -4);
+            $e->getResponse()->getRequest()->setParameter('CARDNO', $ccLast4);
+        }
+
+        Mage::log(var_export($e->getResponse(), true) . "\n\n", null, 'concardispay.log');
     }
 }

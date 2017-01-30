@@ -31,7 +31,7 @@ class Wfn_ConcardisPay_Api_Response implements Wfn_ConcardisPay_Api_Response_Int
     protected $rawResponse;
 
     /**
-     * The original request.
+     * Original request.
      *
      * @var Wfn_ConcardisPay_Api_Request_Interface
      */
