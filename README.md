@@ -1,4 +1,4 @@
-# Magento ePin Payment 1.0
+# ConcardisPay Magento Module
 Credit card payment method that's integrated with ConCardis PayEngine payment gateway.
 
 ## Installation via Composer
