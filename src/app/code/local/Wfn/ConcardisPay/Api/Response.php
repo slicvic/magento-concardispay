@@ -4,10 +4,11 @@
  */
 class Wfn_ConcardisPay_Api_Response implements Wfn_ConcardisPay_Api_Response_Interface
 {
-    const HTTP_CODE_OK              = 200;
-    const STATUS_AUTHORIZED         = 5;
-    const STATUS_PAYMENT_REQUESTED  = 9;
-    const STATUS_PAYMENT_PROCESSING = 91;
+    const HTTP_CODE_OK                 = 200;
+    const STATUS_AUTHORIZED            = 5;
+    const STATUS_PAYMENT_REQUESTED     = 9;
+    const STATUS_AUTHORIZATION_WAITING = 51;
+    const STATUS_PAYMENT_PROCESSING    = 91;
 
     /**
      * HTTP status code.

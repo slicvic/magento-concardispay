@@ -8,7 +8,6 @@ class Wfn_ConcardisPay_Api_Request implements Wfn_ConcardisPay_Api_Request_Inter
     const OPERATION_CAPTURE   = 'SAS';
     const OPERATION_SALE      = 'SAL';
     const CURRENCY_USD        = 'USD';
-    const ECI_ECOMMERCE       = 7;
 
     /**
      * API URL.

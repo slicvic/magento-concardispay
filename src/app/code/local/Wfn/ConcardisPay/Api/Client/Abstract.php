@@ -93,7 +93,7 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
     protected function throwException($message, Wfn_ConcardisPay_Api_Response_Interface $response = null)
     {
         $exception = new Wfn_ConcardisPay_Api_Exception(Mage::helper('wfnconcardispay')->__($message));
-        $exception->setResponse($response);
+        $exception->setApiResponse($response);
         throw $exception;
     }
 }

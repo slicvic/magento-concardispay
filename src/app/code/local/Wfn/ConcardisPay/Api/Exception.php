@@ -14,16 +14,16 @@ class Wfn_ConcardisPay_Api_Exception extends Mage_Core_Exception
      *
      * @var Wfn_ConcardisPay_Api_Response_Interface
      */
-    protected $response;
+    protected $apiResponse;
 
     /**
      * Get API response.
      *
      * @return Wfn_ConcardisPay_Api_Response_Interface
      */
-    public function getResponse()
+    public function getApiResponse()
     {
-        return $this->response;
+        return $this->apiResponse;
     }
 
     /**
@@ -32,9 +32,9 @@ class Wfn_ConcardisPay_Api_Exception extends Mage_Core_Exception
      * @param Wfn_ConcardisPay_Api_Response_Interface $response
      * @return $this
      */
-    public function setResponse(Wfn_ConcardisPay_Api_Response_Interface $response)
+    public function setApiResponse(Wfn_ConcardisPay_Api_Response_Interface $response)
     {
-        $this->response = $response;
+        $this->apiResponse = $response;
         return $this;
     }
 }

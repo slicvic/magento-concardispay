@@ -24,7 +24,11 @@ class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abst
             ->setParameter('OPERATION', Wfn_ConcardisPay_Api_Request::OPERATION_AUTHORIZE)
             ->sign($this->passphrase);
         $response = $request->send();
-        $this->processResponse($response, [$response::STATUS_AUTHORIZED, $response::STATUS_PAYMENT_REQUESTED]);
+        $this->processResponse($response, [
+            $response::STATUS_AUTHORIZED,
+            $response::STATUS_PAYMENT_REQUESTED,
+            $response::STATUS_AUTHORIZATION_WAITING
+        ]);
         return $response;
     }
 
@@ -46,7 +50,11 @@ class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abst
             ->setParameter('OPERATION', Wfn_ConcardisPay_Api_Request::OPERATION_SALE)
             ->sign($this->passphrase);
         $response = $request->send();
-        $this->processResponse($response, [$response::STATUS_AUTHORIZED, $response::STATUS_PAYMENT_REQUESTED]);
+        $this->processResponse($response, [
+            $response::STATUS_AUTHORIZED,
+            $response::STATUS_PAYMENT_REQUESTED,
+            $response::STATUS_AUTHORIZATION_WAITING
+        ]);
         return $response;
     }
 
@@ -65,7 +73,6 @@ class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abst
     {
         $request = (new Wfn_ConcardisPay_Api_Request($this->url))
             ->setParameter('CURRENCY', Wfn_ConcardisPay_Api_Request::CURRENCY_USD)
-            ->setParameter('ECI', Wfn_ConcardisPay_Api_Request::ECI_ECOMMERCE)
             ->setParameter('AMOUNT', $amount * 100)
             ->setParameter('ORDERID', $orderId)
             ->setParameter('CARDNO', $ccNumber)

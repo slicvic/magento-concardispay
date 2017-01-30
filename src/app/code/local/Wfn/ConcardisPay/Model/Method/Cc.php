@@ -50,7 +50,7 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
 
             return $this;
         } catch (Wfn_ConcardisPay_Api_Exception $e) {
-            $this->log($e);
+            $this->logApiResponse($e->getApiResponse());
             throw $e;
         } catch (Exception $e) {
             throw new Wfn_ConcardisPay_Api_Exception();
@@ -66,7 +66,7 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
     {
         try {
             if ($payment->getOrder()->getStatusLabel()) {
-                // Capture existing order from backend
+                // Capture previously authorized order from backend
                 $client = new Wfn_ConcardisPay_Api_Client_Maintenance(
                     $this->getConfigData('maintenance_api_url'),
                     $this->getConfigData('api_pspid'),
@@ -102,7 +102,7 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
 
             return $this;
         } catch (Wfn_ConcardisPay_Api_Exception $e) {
-            $this->log($e);
+            $this->logApiResponse($e->getApiResponse());
             throw $e;
         } catch (Exception $e) {
             throw new Wfn_ConcardisPay_Api_Exception();
@@ -110,18 +110,18 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
     }
 
     /**
-     * Log API exception.
+     * Log API response.
      *
-     * @param Wfn_ConcardisPay_Api_Exception $e
+     * @param Wfn_ConcardisPay_Api_Response_Interface $response
      */
-    protected function log(Wfn_ConcardisPay_Api_Exception $e)
+    protected function logApiResponse(Wfn_ConcardisPay_Api_Response_Interface $response)
     {
-        if ($ccNumber = $e->getResponse()->getRequest()->getParameter('CARDNO')) {
+        if ($ccNumber = $response->getRequest()->getParameter('CARDNO')) {
             // Mask CC number before logging
             $ccLast4 = 'xxxx-' . substr($ccNumber, -4);
-            $e->getResponse()->getRequest()->setParameter('CARDNO', $ccLast4);
+            $response->getRequest()->setParameter('CARDNO', $ccLast4);
         }
 
-        Mage::log(var_export($e->getResponse(), true) . "\n\n", null, 'concardispay.log');
+        Mage::log(var_export($response, true) . "\n\n", null, 'concardispay.log');
     }
 }
