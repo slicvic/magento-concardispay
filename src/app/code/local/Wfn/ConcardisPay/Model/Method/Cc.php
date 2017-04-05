@@ -1,6 +1,7 @@
 <?php
 /**
- * Class Wfn_ConcardisPay_Model_Method_Cc
+ * Payment method that inherits from CC, to reuse form block and
+ * info block.
  */
 class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
 {
