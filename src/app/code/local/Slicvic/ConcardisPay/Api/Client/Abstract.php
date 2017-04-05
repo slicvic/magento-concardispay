@@ -1,8 +1,8 @@
 <?php
 /**
- * Class Wfn_ConcardisPay_Api_Client_Abstract
+ * Class Slicvic_ConcardisPay_Api_Client_Abstract
  */
-abstract class Wfn_ConcardisPay_Api_Client_Abstract
+abstract class Slicvic_ConcardisPay_Api_Client_Abstract
 {
     /**
      * API URL.
@@ -60,11 +60,11 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
     /**
      * Process API response.
      *
-     * @param Wfn_ConcardisPay_Api_Response_Interface $response
+     * @param Slicvic_ConcardisPay_Api_Response_Interface $response
      * @param array $successStatus
-     * @throws Wfn_ConcardisPay_Api_Exception
+     * @throws Slicvic_ConcardisPay_Api_Exception
      */
-    protected function processResponse(Wfn_ConcardisPay_Api_Response_Interface $response, array $successStatus)
+    protected function processResponse(Slicvic_ConcardisPay_Api_Response_Interface $response, array $successStatus)
     {
         if ($response->getHttpCode() != $response::HTTP_CODE_OK) {
             $this->throwException(sprintf(
@@ -87,12 +87,12 @@ abstract class Wfn_ConcardisPay_Api_Client_Abstract
      * Throw an exception with given message.
      *
      * @param string $message
-     * @param Wfn_ConcardisPay_Api_Response_Interface $response
-     * @throws Wfn_ConcardisPay_Api_Exception
+     * @param Slicvic_ConcardisPay_Api_Response_Interface $response
+     * @throws Slicvic_ConcardisPay_Api_Exception
      */
-    protected function throwException($message, Wfn_ConcardisPay_Api_Response_Interface $response = null)
+    protected function throwException($message, Slicvic_ConcardisPay_Api_Response_Interface $response = null)
     {
-        $exception = new Wfn_ConcardisPay_Api_Exception(Mage::helper('wfnconcardispay')->__($message));
+        $exception = new Slicvic_ConcardisPay_Api_Exception(Mage::helper('slicvicconcardispay')->__($message));
         $exception->setApiResponse($response);
         throw $exception;
     }

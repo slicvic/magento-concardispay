@@ -4,8 +4,8 @@
 
 magentoRootPath="/Users/$USER/Code/magento19/root"
 
-rm $magentoRootPath/app/etc/modules/Wfn_ConcardisPay.xml
-rm -R $magentoRootPath/app/code/local/Wfn/ConcardisPay/
+rm $magentoRootPath/app/etc/modules/Slicvic_ConcardisPay.xml
+rm -R $magentoRootPath/app/code/local/Slicvic/ConcardisPay/
 
-cp -R ./src/app/etc/modules/Wfn_ConcardisPay.xml $magentoRootPath/app/etc/modules/Wfn_ConcardisPay.xml
-cp -R ./src/app/code/local/Wfn/ConcardisPay/ $magentoRootPath/app/code/local/Wfn/ConcardisPay/
+cp -R ./src/app/etc/modules/Slicvic_ConcardisPay.xml $magentoRootPath/app/etc/modules/Slicvic_ConcardisPay.xml
+cp -R ./src/app/code/local/Slicvic/ConcardisPay/ $magentoRootPath/app/code/local/Slicvic/ConcardisPay/

@@ -1,8 +1,8 @@
 <?php
 /**
- * Class Wfn_ConcardisPay_Api_Response
+ * Class Slicvic_ConcardisPay_Api_Response
  */
-class Wfn_ConcardisPay_Api_Response implements Wfn_ConcardisPay_Api_Response_Interface
+class Slicvic_ConcardisPay_Api_Response implements Slicvic_ConcardisPay_Api_Response_Interface
 {
     const HTTP_CODE_OK                 = 200;
     const STATUS_AUTHORIZED            = 5;
@@ -34,7 +34,7 @@ class Wfn_ConcardisPay_Api_Response implements Wfn_ConcardisPay_Api_Response_Int
     /**
      * Original request.
      *
-     * @var Wfn_ConcardisPay_Api_Request_Interface
+     * @var Slicvic_ConcardisPay_Api_Request_Interface
      */
     protected $request;
 
@@ -72,9 +72,9 @@ class Wfn_ConcardisPay_Api_Response implements Wfn_ConcardisPay_Api_Response_Int
      * @param string $httpCode
      * @param array  $headers
      * @param string $rawResponse
-     * @param Wfn_ConcardisPay_Api_Request_Interface $request
+     * @param Slicvic_ConcardisPay_Api_Request_Interface $request
      */
-    public function __construct($httpCode, $headers, $rawResponse, Wfn_ConcardisPay_Api_Request_Interface $request)
+    public function __construct($httpCode, $headers, $rawResponse, Slicvic_ConcardisPay_Api_Request_Interface $request)
     {
         $this->httpCode = (int) $httpCode;
         $this->headers = $headers;

@@ -1,8 +1,8 @@
 <?php
 /**
- * Interface Wfn_ConcardisPay_Api_Response_Interface
+ * Interface Slicvic_ConcardisPay_Api_Response_Interface
  */
-interface Wfn_ConcardisPay_Api_Response_Interface
+interface Slicvic_ConcardisPay_Api_Response_Interface
 {
     /**
      * Get HTTP status code.
@@ -28,7 +28,7 @@ interface Wfn_ConcardisPay_Api_Response_Interface
     /**
      * Get original request.
      *
-     * @return Wfn_ConcardisPay_Api_Request_Interface
+     * @return Slicvic_ConcardisPay_Api_Request_Interface
      */
     public function getRequest();
 

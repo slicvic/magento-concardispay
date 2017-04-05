@@ -1,10 +1,10 @@
 <?php
 /**
- * Class Wfn_ConcardisPay_Api_Client_Order
+ * Class Slicvic_ConcardisPay_Api_Client_Order
  *
  * Client for {@link https://secure.payengine.de/ncol/test/orderdirect.asp}
  */
-class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abstract
+class Slicvic_ConcardisPay_Api_Client_Order extends Slicvic_ConcardisPay_Api_Client_Abstract
 {
     /**
      * Authorize given amount.
@@ -15,13 +15,13 @@ class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abst
      * @param string $ccExpMonth
      * @param string $ccExpYear
      * @param string $ccCvc
-     * @return Wfn_ConcardisPay_Api_Response_Interface
-     * @throws Wfn_ConcardisPay_Api_Exception
+     * @return Slicvic_ConcardisPay_Api_Response_Interface
+     * @throws Slicvic_ConcardisPay_Api_Exception
      */
     public function authorize($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
     {
         $request = $this->buildRequest($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
-            ->setParameter('OPERATION', Wfn_ConcardisPay_Api_Request::OPERATION_AUTHORIZE)
+            ->setParameter('OPERATION', Slicvic_ConcardisPay_Api_Request::OPERATION_AUTHORIZE)
             ->sign($this->passphrase);
         $response = $request->send();
         $this->processResponse($response, [
@@ -41,13 +41,13 @@ class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abst
      * @param string $ccExpMonth
      * @param string $ccExpYear
      * @param string $ccCvc
-     * @return Wfn_ConcardisPay_Api_Response_Interface
-     * @throws Wfn_ConcardisPay_Api_Exception
+     * @return Slicvic_ConcardisPay_Api_Response_Interface
+     * @throws Slicvic_ConcardisPay_Api_Exception
      */
     public function authorizeAndCapture($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
     {
         $request = $this->buildRequest($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
-            ->setParameter('OPERATION', Wfn_ConcardisPay_Api_Request::OPERATION_SALE)
+            ->setParameter('OPERATION', Slicvic_ConcardisPay_Api_Request::OPERATION_SALE)
             ->sign($this->passphrase);
         $response = $request->send();
         $this->processResponse($response, [
@@ -67,12 +67,12 @@ class Wfn_ConcardisPay_Api_Client_Order extends Wfn_ConcardisPay_Api_Client_Abst
      * @param string $ccExpMonth
      * @param string $ccExpYear
      * @param string $ccCvc
-     * @return Wfn_ConcardisPay_Api_Request_Interface
+     * @return Slicvic_ConcardisPay_Api_Request_Interface
      */
     private function buildRequest($amount, $orderId, $ccNumber, $ccExpMonth, $ccExpYear, $ccCvc)
     {
-        $request = (new Wfn_ConcardisPay_Api_Request($this->url))
-            ->setParameter('CURRENCY', Wfn_ConcardisPay_Api_Request::CURRENCY_USD)
+        $request = (new Slicvic_ConcardisPay_Api_Request($this->url))
+            ->setParameter('CURRENCY', Slicvic_ConcardisPay_Api_Request::CURRENCY_USD)
             ->setParameter('AMOUNT', $amount * 100)
             ->setParameter('ORDERID', $orderId)
             ->setParameter('CARDNO', $ccNumber)

@@ -1,8 +1,8 @@
 <?php
 /**
- * Class Wfn_ConcardisPay_Api_Exception
+ * Class Slicvic_ConcardisPay_Api_Exception
  */
-class Wfn_ConcardisPay_Api_Exception extends Mage_Core_Exception
+class Slicvic_ConcardisPay_Api_Exception extends Mage_Core_Exception
 {
     /**
      * {@inherit}
@@ -12,14 +12,14 @@ class Wfn_ConcardisPay_Api_Exception extends Mage_Core_Exception
     /**
      * API response.
      *
-     * @var Wfn_ConcardisPay_Api_Response_Interface
+     * @var Slicvic_ConcardisPay_Api_Response_Interface
      */
     protected $apiResponse;
 
     /**
      * Get API response.
      *
-     * @return Wfn_ConcardisPay_Api_Response_Interface
+     * @return Slicvic_ConcardisPay_Api_Response_Interface
      */
     public function getApiResponse()
     {
@@ -29,10 +29,10 @@ class Wfn_ConcardisPay_Api_Exception extends Mage_Core_Exception
     /**
      * Set API response.
      *
-     * @param Wfn_ConcardisPay_Api_Response_Interface $response
+     * @param Slicvic_ConcardisPay_Api_Response_Interface $response
      * @return $this
      */
-    public function setApiResponse(Wfn_ConcardisPay_Api_Response_Interface $response)
+    public function setApiResponse(Slicvic_ConcardisPay_Api_Response_Interface $response)
     {
         $this->apiResponse = $response;
         return $this;

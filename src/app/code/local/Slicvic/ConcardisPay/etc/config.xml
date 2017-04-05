@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
 <config>
     <modules>
-        <Wfn_ConcardisPay>
+        <Slicvic_ConcardisPay>
             <version>1.0.0.0</version>
-        </Wfn_ConcardisPay>
+        </Slicvic_ConcardisPay>
     </modules>
     <global>
         <helpers>
-            <wfnconcardispay>
-                <class>Wfn_ConcardisPay_Helper</class>
-            </wfnconcardispay>
+            <slicvicconcardispay>
+                <class>Slicvic_ConcardisPay_Helper</class>
+            </slicvicconcardispay>
         </helpers>
         <models>
-            <wfnconcardispay>
-                <class>Wfn_ConcardisPay_Model</class>
-            </wfnconcardispay>
+            <slicvicconcardispay>
+                <class>Slicvic_ConcardisPay_Model</class>
+            </slicvicconcardispay>
         </models>
     </global>
     <default>
         <payment>
-            <wfn_concardis_cc>
+            <slicvic_concardis_cc>
                 <active>1</active>
-                <model>wfnconcardispay/method_cc</model>
+                <model>slicvicconcardispay/method_cc</model>
                 <payment_action>authorize</payment_action>
                 <cctypes>AE,VI,MC,DI</cctypes>
                 <order_status>processing</order_status>
@@ -35,7 +35,7 @@
                 <api_userid></api_userid>
                 <api_password><![CDATA[]]></api_password>
                 <api_passphrase><![CDATA[]]></api_passphrase>
-            </wfn_concardis_cc>
+            </slicvic_concardis_cc>
         </payment>
     </default>
 </config>

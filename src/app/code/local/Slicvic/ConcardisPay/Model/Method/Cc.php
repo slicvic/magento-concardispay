@@ -3,12 +3,12 @@
  * Payment method that inherits from CC, to reuse form block and
  * info block.
  */
-class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
+class Slicvic_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
 {
     /**
      * {@inheritdoc}
      */
-    protected $_code = 'wfn_concardis_cc';
+    protected $_code = 'slicvic_concardis_cc';
 
     /**
      * {@inheritdoc}
@@ -28,7 +28,7 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
     public function authorize(Varien_Object $payment, $amount)
     {
         try {
-            $client = new Wfn_ConcardisPay_Api_Client_Order(
+            $client = new Slicvic_ConcardisPay_Api_Client_Order(
                 $this->getConfigData('order_api_url'),
                 $this->getConfigData('api_pspid'),
                 $this->getConfigData('api_userid'),
@@ -50,11 +50,11 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
                 ->setIsTransactionClosed(0);
 
             return $this;
-        } catch (Wfn_ConcardisPay_Api_Exception $e) {
+        } catch (Slicvic_ConcardisPay_Api_Exception $e) {
             $this->logApiResponse($e->getApiResponse());
             throw $e;
         } catch (Exception $e) {
-            throw new Wfn_ConcardisPay_Api_Exception();
+            throw new Slicvic_ConcardisPay_Api_Exception();
         }
     }
 
@@ -68,7 +68,7 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
         try {
             if ($payment->getOrder()->getStatusLabel()) {
                 // Capture previously authorized order from backend
-                $client = new Wfn_ConcardisPay_Api_Client_Maintenance(
+                $client = new Slicvic_ConcardisPay_Api_Client_Maintenance(
                     $this->getConfigData('maintenance_api_url'),
                     $this->getConfigData('api_pspid'),
                     $this->getConfigData('api_userid'),
@@ -79,7 +79,7 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
                 $response = $client->capture($amount, $payment->getOrder()->getIncrementId());
             } else {
                 // Authorize and capture a new order
-                $client = new Wfn_ConcardisPay_Api_Client_Order(
+                $client = new Slicvic_ConcardisPay_Api_Client_Order(
                     $this->getConfigData('order_api_url'),
                     $this->getConfigData('api_pspid'),
                     $this->getConfigData('api_userid'),
@@ -102,20 +102,20 @@ class Wfn_ConcardisPay_Model_Method_Cc extends Mage_Payment_Model_Method_Cc
                 ->setIsTransactionClosed(1);
 
             return $this;
-        } catch (Wfn_ConcardisPay_Api_Exception $e) {
+        } catch (Slicvic_ConcardisPay_Api_Exception $e) {
             $this->logApiResponse($e->getApiResponse());
             throw $e;
         } catch (Exception $e) {
-            throw new Wfn_ConcardisPay_Api_Exception();
+            throw new Slicvic_ConcardisPay_Api_Exception();
         }
     }
 
     /**
      * Log API response.
      *
-     * @param Wfn_ConcardisPay_Api_Response_Interface $response
+     * @param Slicvic_ConcardisPay_Api_Response_Interface $response
      */
-    protected function logApiResponse(Wfn_ConcardisPay_Api_Response_Interface $response)
+    protected function logApiResponse(Slicvic_ConcardisPay_Api_Response_Interface $response)
     {
         if ($ccNumber = $response->getRequest()->getParameter('CARDNO')) {
             // Mask CC number before logging

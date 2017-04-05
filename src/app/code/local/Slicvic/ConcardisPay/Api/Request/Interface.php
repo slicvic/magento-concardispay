@@ -1,8 +1,8 @@
 <?php
 /**
- * Interface Wfn_ConcardisPay_Api_Request_Interface
+ * Interface Slicvic_ConcardisPay_Api_Request_Interface
  */
-interface Wfn_ConcardisPay_Api_Request_Interface
+interface Slicvic_ConcardisPay_Api_Request_Interface
 {
     /**
      * Get API URL.
@@ -39,7 +39,7 @@ interface Wfn_ConcardisPay_Api_Request_Interface
     /**
      * Execute a cURL request.
      *
-     * @return Wfn_ConcardisPay_Api_Response_Interface
+     * @return Slicvic_ConcardisPay_Api_Response_Interface
      */
     public function send();
 

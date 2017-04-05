@@ -1,5 +1,5 @@
 {
-    "name": "wfn/magento-module-concardispay",
+    "name": "slicvic/magento-module-concardispay",
     "description": "A credit card payment method that's integrated with ConCardis PayEngine payment gateway",
     "type": "magento-module",
     "require": {
@@ -7,8 +7,8 @@
     },
     "extra":{
         "map":[
-            ["src/app/etc/modules/Wfn_ConcardisPay.xml", "app/etc/modules/Wfn_ConcardisPay.xml"],
-            ["src/app/code/local/Wfn/ConcardisPay/", "app/code/local/Wfn/ConcardisPay"]
+            ["src/app/etc/modules/Slicvic_ConcardisPay.xml", "app/etc/modules/Slicvic_ConcardisPay.xml"],
+            ["src/app/code/local/Slicvic/ConcardisPay/", "app/code/local/Slicvic/ConcardisPay"]
         ]
     }
 }

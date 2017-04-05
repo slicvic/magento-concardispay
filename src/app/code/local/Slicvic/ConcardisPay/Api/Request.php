@@ -1,8 +1,8 @@
 <?php
 /**
- * Class Wfn_ConcardisPay_Api_Request
+ * Class Slicvic_ConcardisPay_Api_Request
  */
-class Wfn_ConcardisPay_Api_Request implements Wfn_ConcardisPay_Api_Request_Interface
+class Slicvic_ConcardisPay_Api_Request implements Slicvic_ConcardisPay_Api_Request_Interface
 {
     const OPERATION_AUTHORIZE = 'RES';
     const OPERATION_CAPTURE   = 'SAS';
@@ -80,7 +80,7 @@ class Wfn_ConcardisPay_Api_Request implements Wfn_ConcardisPay_Api_Request_Inter
         $body = curl_exec($ch);
         $headers = curl_getinfo($ch);
         curl_close($ch);
-        $response = new Wfn_ConcardisPay_Api_Response($headers['http_code'], $headers, $body, $this);
+        $response = new Slicvic_ConcardisPay_Api_Response($headers['http_code'], $headers, $body, $this);
         return $response;
     }
 
