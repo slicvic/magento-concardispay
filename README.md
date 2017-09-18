@@ -30,7 +30,7 @@ Make sure to set `magento-root-dir` to the directory where your Magento resides 
 }
 ```
 
-## Snapshots
+## Screenshots
 
 ![Alt text](https://cloud.githubusercontent.com/assets/4705073/24683013/a873194a-196a-11e7-9878-4de28c03ae80.png)
 
