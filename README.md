@@ -1,4 +1,4 @@
-# ConcardisPay Magento Module
+# Magento ConcardisPay
 A credit card payment method that's integrated with ConCardis PayEngine payment gateway.
 
 ## Installation via Composer
