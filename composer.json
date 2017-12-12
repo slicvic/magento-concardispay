@@ -1,6 +1,6 @@
 {
     "name": "slicvic/magento-module-concardispay",
-    "description": "A credit card payment method that's integrated with ConCardis PayEngine payment gateway",
+    "description": "A credit card payment method that's integrated with Concardis payment gateway",
     "type": "magento-module",
     "require": {
         "magento-hackathon/magento-composer-installer": "*"

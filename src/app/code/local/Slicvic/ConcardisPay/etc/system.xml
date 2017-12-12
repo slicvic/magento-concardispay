@@ -4,7 +4,7 @@
         <payment>
             <groups>
                 <slicvic_concardis_cc translate="label" module="slicvicconcardispay">
-                    <label>Slicvic ConCardis</label>
+                    <label>Slicvic Concardis</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>1000</sort_order>
                     <show_in_default>1</show_in_default>

@@ -25,7 +25,7 @@
                 <payment_action>authorize</payment_action>
                 <cctypes>AE,VI,MC,DI</cctypes>
                 <order_status>processing</order_status>
-                <title>Credit / Debit / Prepaid Cards (ConCardis)</title>
+                <title>Credit / Debit / Prepaid Cards (Concardis)</title>
                 <allowspecific>1</allowspecific>
                 <specificcountry>US</specificcountry>
                 <cctypes>AE,VI,MC,DI</cctypes>

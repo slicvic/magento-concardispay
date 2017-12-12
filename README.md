@@ -1,5 +1,5 @@
 # Magento ConcardisPay
-A credit card payment method that's integrated with ConCardis PayEngine payment gateway.
+A credit card payment method that's integrated with Concardis payment gateway.
 
 ## Installation via Composer
 In order to pull in the module via composer you will need to create a `composer.json` file in your project root folder.
@@ -37,4 +37,3 @@ Make sure to set `magento-root-dir` to the directory where your Magento resides 
 ![Alt text](https://user-images.githubusercontent.com/4705073/33864802-819d534a-debc-11e7-8348-afed43033ae2.png)
 
 ![Alt text](https://user-images.githubusercontent.com/4705073/33864858-be09eadc-debc-11e7-91a7-1bfa97ce0225.png)
-
